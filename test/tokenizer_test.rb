@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "helper"
+require "test_helper"
 
 class TokenizerTest < Lispy::Test
   def setup
