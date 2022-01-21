@@ -1,6 +1,6 @@
 $: << File.expand_path("lib")
 
-require "lisp/version"
+require "lispy/version"
 
 Gem::Specification.new do |s|
   s.name        = "lispy"
@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'minitest', '~> 5.14'
   s.add_development_dependency 'rake', '~> 13.0'
-  s.add_dependency 'fisk', '~> 2.3.1'
+
 end
