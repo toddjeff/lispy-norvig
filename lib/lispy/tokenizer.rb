@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Lispy
-  class Prompt
+  class Tokenizer
     extend T::Sig
 
     sig { params(chars: String).returns(Array) }

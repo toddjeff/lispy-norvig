@@ -3,7 +3,7 @@
 require "sorbet-runtime"
 
 require_relative "lispy/types"
-require_relative "lispy/prompt"
+require_relative "lispy/tokenizer"
 
 module Lispy
 end
