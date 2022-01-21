@@ -12,6 +12,7 @@ group :development do
   gem "debug"
   gem "pry-byebug"
   gem "irb"
+  gem "minitest-focus"
 end
 
 gem "sorbet-runtime"
