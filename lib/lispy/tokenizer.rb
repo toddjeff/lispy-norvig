@@ -32,10 +32,10 @@ module Lispy
 
     sig { params(token: String).returns(Atom) }
     def atom(token)
-      Integer(token)
+      Number.new(Integer(token))
     rescue ArgumentError
       begin
-        Float(token)
+        Number.new(Float(token))
       rescue ArgumentError
         symbol(token)
       end
@@ -43,7 +43,7 @@ module Lispy
 
     sig { params(token: String).returns(Symbol) }
     def symbol(token)
-      String(token)
+      Symbol.new(token)
     end
   end
 end

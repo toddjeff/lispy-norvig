@@ -24,16 +24,16 @@ module Lispy
 
     def test_parse_program
       program = "(begin (define r 10) (* pi (* r r)))"
-      expected = ["begin", ["define", "r", 10], ["*", "pi", ["*", "r", "r"]]]
+      expected = ["begin", ["define", "r", Number.new(10)], ["*", "pi", ["*", "r", "r"]]]
       assert_equal expected, @tokenizer.parse(program)
     end
 
     def test_atom
-      assert_equal Integer, @tokenizer.atom("1").class
+      assert_equal Number, @tokenizer.atom("1").class
     end
 
     def test_symbol
-      assert_equal String, @tokenizer.symbol("aaaa").class
+      assert_equal Symbol, @tokenizer.symbol("aaaa").class
     end
   end
 end
