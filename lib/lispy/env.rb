@@ -36,6 +36,7 @@ module Lispy
           "not" => proc { |x| !x },
           "null?" => proc { |x| x == [] },
           "number?" => proc { |x| x.instance_of?(Number) },
+          "pi" => Math::PI,
           "print" => proc { |x| output.print(x) },
           "procedure?" => proc { |x| x.respond_to?(:call) },
           "round" => proc { |x| x.round },
