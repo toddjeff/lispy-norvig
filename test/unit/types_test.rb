@@ -16,5 +16,10 @@ module Lispy
 
       assert_equal x, y
     end
+
+    def test_env_find
+      env = Env.new(outer: StandardEnvironment.global)
+      assert StandardEnvironment.global.equal?(env.outer)
+    end
   end
 end

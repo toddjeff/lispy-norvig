@@ -6,7 +6,7 @@ module Lispy
       extend T::Sig
 
       sig { params(x: Exp, env: Env).returns(T.untyped) }
-      def call(x, env = Environment.global)
+      def call(x, env = StandardEnvironment.global)
         if x.instance_of?(Symbol)
           env[x]
         elsif x.instance_of?(Number)

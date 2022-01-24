@@ -23,5 +23,13 @@ module Lispy
   Atom    = T.type_alias { T.any(Symbol, Number) }
   List    = T.type_alias { Array }
   Exp     = T.type_alias { T.any(Atom, List) }
-  Env     = T.type_alias { Hash }
+
+  class Env < Hash
+    attr_reader :outer
+
+    def initialize(outer: nil)
+      super
+      @outer = outer
+    end
+  end
 end

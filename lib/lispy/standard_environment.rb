@@ -1,18 +1,22 @@
 # frozen_string_literal: true
+
 require "stringio"
 
 module Lispy
-  class Environment
+  class StandardEnvironment
+    extend T::Sig
+    @@global = nil
+
     class << self
       extend T::Sig
 
       sig { returns(Env) }
       def global
-        @global ||= standard
+        @@global ||= create
       end
 
       sig { params(input: ::StringIO, output: ::StringIO).returns(Env) }
-      def standard(input: $stdin, output: $stdout)
+      def create(input: $stdin, output: $stdout)
         ret = math_methods
 
         ret.update({
@@ -48,10 +52,12 @@ module Lispy
         ret
       end
 
+      private
+
       sig { returns(Env) }
       def math_methods
         keys = Math.methods - Object.methods
-        ret = {}
+        ret = Env.new
         keys.each do |k|
           count = Math.method(k).parameters.count
 

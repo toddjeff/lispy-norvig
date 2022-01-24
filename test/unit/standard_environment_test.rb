@@ -4,16 +4,12 @@ require "test_helper"
 require 'stringio'
 
 module Lispy
-  class EnvTest < Lispy::Test
+  class StandardEnvironmentTest < Lispy::Test
     def setup
-      @standard_env = Environment.standard
+      @standard_env = StandardEnvironment.create
     end
 
-    def test_math_methods_count
-      assert_equal 26, Environment.math_methods.keys.length
-    end
-
-    def test_math_methods
+    def test_atan2
       expected = -3.141592653589793
       assert_equal expected, fn("atan2").call(-0.0, -1.0)
     end
@@ -114,7 +110,7 @@ module Lispy
 
     def test_print
       test_out  = StringIO.new
-      @standard_env = Environment.standard(output: test_out)
+      @standard_env = StandardEnvironment.create(output: test_out)
       fn("print").call("hey")
       assert_equal "hey", test_out.string
     end
@@ -136,8 +132,8 @@ module Lispy
     end
 
     def test_global_env
-      g1 = Environment.global
-      g2 = Environment.global
+      g1 = StandardEnvironment.global
+      g2 = StandardEnvironment.global
       assert g1.equal?(g2)
     end
 
