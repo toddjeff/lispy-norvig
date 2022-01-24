@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "stringio"
 
 module Lispy
   class Environment
@@ -10,7 +11,7 @@ module Lispy
         @global ||= standard
       end
 
-      sig { params(input: StringIO, output: StringIO).returns(Env) }
+      sig { params(input: ::StringIO, output: ::StringIO).returns(Env) }
       def standard(input: $stdin, output: $stdout)
         ret = math_methods
 
@@ -27,6 +28,7 @@ module Lispy
           "cdr" => proc { |x| x[1..-1] },
           "cons" => proc { |x, y| [x].append(y) },
           "eq?" => proc { |x, y| x.equal?(y) },
+          "t" => true,
           "length" => proc { |x| x.length },
           "list" => proc { |*x| Array(x) },
           "list?" => proc { |x| x.instance_of?(Array) },
@@ -35,6 +37,7 @@ module Lispy
           "min" => proc { |x| x.min },
           "not" => proc { |x| !x },
           "null?" => proc { |x| x == [] },
+          "nil" => false,
           "number?" => proc { |x| x.instance_of?(Number) },
           "pi" => Math::PI,
           "print" => proc { |x| output.print(x) },

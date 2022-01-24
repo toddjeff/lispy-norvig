@@ -24,6 +24,18 @@ module Lispy
       assert_equal expected, eval_(program)
     end
 
+    def test_if_true
+      program = "(if t 1 2)"
+      expected = 1
+      assert_equal expected, eval_(program)
+    end
+
+    def test_if_false
+      program = "(if nil 1 2)"
+      expected = 2
+      assert_equal expected, eval_(program)
+    end
+
     private
 
     def eval_(program)

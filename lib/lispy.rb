@@ -7,6 +7,7 @@ require_relative "lispy/tokenizer"
 require_relative "lispy/version"
 require_relative "lispy/env"
 require_relative "lispy/eval"
+require_relative "lispy/repl"
 
 module Lispy
 end

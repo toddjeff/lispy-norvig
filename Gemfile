@@ -6,6 +6,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem "rubocop"
 gem "rubocop-shopify"
+gem "readline"
 
 group :development do
   gem "sorbet"
