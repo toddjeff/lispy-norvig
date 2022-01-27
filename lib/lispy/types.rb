@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'pry-byebug'
 
 module Lispy
   # Symbol  = T.type_alias { String }
@@ -27,9 +28,33 @@ module Lispy
   class Env < Hash
     attr_reader :outer
 
-    def initialize(outer: nil)
-      super
+    def initialize(params: [], args: [], outer: nil)
+      super()
+      merge!(**params.zip(args).to_h)
       @outer = outer
+    end
+
+    def find(var)
+      if key?(var)
+        self
+      elsif outer
+        outer.find(var)
+      else
+        binding.pry
+        raise StandardError, "#{var} is not defined"
+      end
+    end
+  end
+
+  class Procedure
+    def initialize(params, body, env)
+      @params = params
+      @body = body
+      @env = env
+    end
+
+    def call(*args)
+      Eval.call(@body, Env.new(params: @params, args: args, outer: @env))
     end
   end
 end
