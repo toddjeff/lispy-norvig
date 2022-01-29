@@ -1,4 +1,5 @@
 
-From
+Ruby implementation of Lispy
 
-http://norvig.com/lispy.html
+(How to Write a (Lisp) Interpreter (in Python))
+from http://norvig.com/lispy.html
